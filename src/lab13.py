@@ -106,7 +106,8 @@ if __name__ == '__main__':
     print('\nA4 · Chi phí cố định, phạm vi noi_dia + hang_nang')
     scope = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
     scope_out = mo_hinh(runs, scope)
-    full_month_success = 45000 * scope_out['thanh_cong'] / len(scope)
+    # 45.000 là tổng khối lượng mọi loại; phạm vi chỉ chiếm 982/1.200 nên chia cho len(reqs)
+    full_month_success = 45000 * scope_out['thanh_cong'] / len(reqs)
     fixed_per_success = 40_000_000 / full_month_success
     variable_cps = scope_out['tong'] / scope_out['thanh_cong']
     print(f'45,000 requests/month: success={full_month_success:,.0f}, fixed={fixed_per_success:,.0f}, '
