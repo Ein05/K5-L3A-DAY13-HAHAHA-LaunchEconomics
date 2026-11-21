@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Thế Hoàng
 - MSSV: 2A202603718
-- Email: Chưa bổ sung
+- Email: 26ai.hoangnt3@vinuni.edu.vn
 - Vai trong nhóm: Người 3, người gắn nhãn 1 và phụ trách phần chỉ số, event, rủi ro kinh tế.
 
 ## 2. Phần việc phụ trách
@@ -25,8 +25,8 @@
 
 ## 5. Công cụ AI đã dùng
 
-- Dùng Codex để nhập bộ nhãn do Hoàng cung cấp, dự thảo nội dung, đếm lại ba chỉ số từ CSV bằng Python và đối chiếu công thức độ nhạy. Codex chuẩn hóa chữ hoa và dấu tiếng Việt trong tên loại.
-- Phần kiểm tra cá nhân: Hoàng bổ sung các bước đã tự thực hiện trước khi nộp.
+- Dùng Codex để nhập bộ nhãn do Hoàng cung cấp, dự thảo nội dung, đếm lại ba chỉ số từ CSV bằng Python và đối chiếu công thức độ nhạy.
+
 
 ## 6. Tự đánh giá
 
