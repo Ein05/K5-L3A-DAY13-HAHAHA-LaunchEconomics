@@ -10,7 +10,7 @@
 | Dùng | Tỉ lệ yêu cầu được hiện gợi ý | Theo tuần, đếm yêu cầu đủ điều kiện của nhóm can thiệp đã hiện ít nhất một gợi ý, chia tổng số yêu cầu đủ điều kiện của nhóm can thiệp | Không cần tính |
 | An toàn | Tỉ lệ yêu cầu hoàn sai tiền trong mẫu kiểm toán | Theo tuần, đếm yêu cầu trong mẫu có số tiền thực hoàn khác số tiền đúng chính sách, chia tổng số yêu cầu đã kiểm xong | Không cần tính |
 
-Ba kết quả mô tả đợt chạy thử. Mẫu này chưa có nhóm đối chứng để ước lượng tác động của trợ lý. Nguồn là [logix_requests.csv](../../src/logix_requests.csv), đếm một lần theo `request_id`. Nếu pilot chọn `noi_dia` và `hang_nang`, tỉ lệ mở lại tham chiếu trong chính phạm vi đó là **39 / 982 = 3,97%**. Dùng cùng phạm vi và cửa sổ theo dõi khi so sánh hai nhóm pilot.
+Ba kết quả mô tả đợt chạy thử. Mẫu này chưa có nhóm đối chứng để ước lượng tác động của trợ lý. Nguồn là [logix_requests.csv](../../src/logix_requests.csv), đếm một lần theo `request_id`. Trong phạm vi `noi_dia` và `hang_nang` mà [kế hoạch pilot](pilot_plan.yaml) đã chọn, tỉ lệ mở lại tham chiếu là **39 / 982 = 3,97%**. Dùng cùng phạm vi và cửa sổ theo dõi khi so sánh hai nhóm pilot.
 
 ## Danh sách event
 
@@ -28,7 +28,7 @@ Mỗi event có `trace_id`, `request_id` và thời điểm phát sinh `event_at
 
 **Đối chiếu chỉ số với event**
 
-- **Chính.** Dùng `refund_request_created` và lần `ticket_closed` đầu để tính thời gian đóng. Tạm đặc tả cửa sổ mở lại là 7 ngày kể từ lần đóng đầu tiên. Nhóm cần chốt mốc này trong pilot để tái tạo đúng định nghĩa của cột dữ liệu. Chỉ chốt lô yêu cầu khi đã đủ cửa sổ quan sát, kể cả 24 giờ để đóng và 7 ngày theo dõi sau đó.
+- **Chính.** Dùng `refund_request_created` và lần `ticket_closed` đầu để tính thời gian đóng. Đề xuất lấy thời điểm đóng đầu tiên làm mốc bắt đầu cửa sổ mở lại 7 ngày, dùng giống nhau cho hai nhánh. Người phụ trách pilot cần xác nhận mốc này trước khi triển khai vì CSV chỉ có cờ mở lại và kế hoạch pilot hiện chưa ghi thời điểm bắt đầu. Chỉ chốt lô yêu cầu khi đã đủ cửa sổ quan sát, kể cả 24 giờ để đóng và 7 ngày theo dõi sau đó.
 - **Bỏ qua gợi ý.** Từ `staff_review_decision`, lấy quyết định cuối của mỗi yêu cầu được xem lại trong cửa sổ đo. Đếm `sua` và `bo`, chia số yêu cầu có quyết định xem lại.
 - **Mở lại trong 7 ngày.** Nối `refund_request_created`, lần `ticket_closed` đầu và `ticket_reopened`. Đếm yêu cầu có ít nhất một lần mở lại trong cửa sổ, chia tổng yêu cầu của cùng lô đã đủ thời gian quan sát theo chỉ số chính.
 - **Được hiện gợi ý.** Lọc nhóm can thiệp đủ điều kiện từ `refund_request_created`. Nối `agent_suggestion_shown` và đếm mỗi yêu cầu một lần trong tuần đo.
@@ -36,7 +36,7 @@ Mỗi event có `trace_id`, `request_id` và thời điểm phát sinh `event_at
 
 ## E2 · Rủi ro kinh tế
 
-Hai dòng dưới dùng kịch bản B1 trong [bảng chi phí nhóm](bang_chi_phi.md). Các số dưới tính từ hai CSV trên toàn bộ 1.200 yêu cầu và khớp đầu ra B1 khi chạy `src/lab13.py`. Hai dòng tương ứng trong bảng chi phí nhóm vẫn đang chờ điền.
+Hai dòng dưới khớp hai kịch bản B1 trong [bảng chi phí nhóm](bang_chi_phi.md) và đầu ra của `src/lab13.py` trên toàn bộ 1.200 yêu cầu.
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
