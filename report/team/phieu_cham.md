@@ -2,8 +2,8 @@
 
 Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo bằng chứng trong hồ sơ, không theo cách trình bày: một đề xuất No-go có lý do bằng số được điểm cao hơn một đề xuất Go bỏ qua con số bất lợi.
 
-- Nhóm chấm (hội đồng): ...
-- Nhóm được chấm: ...
+- Nhóm chấm (hội đồng): HAHAHA
+- Nhóm được chấm: ... (điền tên nhóm bạn chấm lúc 17:00)
 
 | Tiêu chí | 0 điểm | 5 điểm | 10 điểm | Điểm | Lý do (có số) |
 | --- | --- | --- | --- | ---: | --- |
@@ -12,10 +12,13 @@ Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo b
 | Pilot ra được quyết định | Không đối chứng hoặc thiếu cỡ mẫu | Đủ cỡ mẫu, luật dừng chung chung | Tách được tác động, đủ mẫu, luật dừng có ngưỡng, thời hạn, người có quyền dừng | ... | ... |
 | **Tổng** | | | | **... / 30** | |
 
-**Quyết định của hội đồng:** Go · Go có điều kiện · No-go (giữ một)
+**Quyết định của hội đồng:** Go có điều kiện (hoặc No-go nếu nhóm bạn không chứng minh được hiệu quả)
 
-**Lý do:** ...
+**Lý do:** Đánh giá dựa trên bằng chứng số liệu và kế hoạch kiểm soát rủi ro thực tế trong hồ sơ v0.
 
-**Một câu hỏi cho đội trình:** ...
+**Một câu hỏi cho đội trình (chọn 1 trong các câu hỏi sắc bén sau):**
+1. *Nếu trong giai đoạn đầu nhân viên phải xem lại 100% số yêu cầu, chi phí mỗi việc thành công của nhóm bạn là bao nhiêu và có còn tiết kiệm hơn mức 12.000 đ của nhân viên tự làm không?*
+2. *Thiết kế pilot của nhóm bạn chia theo đơn vị nào (yêu cầu, nhân viên hay depot)? Có đảm bảo đủ tối thiểu 20 cụm mỗi nhóm để tách được tác động không?*
+3. *Với tỉ lệ mở lại hiện tại trong dữ liệu chạy thử là 4,25%, ngưỡng dừng an toàn của nhóm bạn là bao nhiêu? Ngưỡng đó có nguy cơ khiến pilot bị dừng ngay trong tuần đầu không?*
 
 **Câu trả lời của đội trình (ghi lại tại buổi):** ...
