@@ -19,9 +19,12 @@ Mỗi event có `trace_id`, `request_id` và thời điểm phát sinh `event_at
 | Event | Ai tạo | Thuộc tính chính | Thời điểm |
 | --- | --- | --- | --- |
 | `refund_request_created` | Hệ thống tiếp nhận | `trace_id`, `request_id`, `event_at`, `arm`, `loai`, `eligible` | Khi nhận yêu cầu và ghi phân nhóm |
+| `agent_run_completed` | Dịch vụ trợ lý | `trace_id`, `request_id`, `event_at`, `run_id`, `attempt`, `status`, `tokens_in`, `tokens_out`, `tool_calls` | Sau mỗi lượt chạy, kể cả lượt lỗi và lượt chạy lại |
 | `agent_suggestion_shown` | Giao diện CSKH | `trace_id`, `request_id`, `event_at`, `staff_id` | Khi giao diện hiển thị gợi ý cho nhân viên |
 | `staff_review_decision` | Giao diện CSKH | `trace_id`, `request_id`, `event_at`, `staff_id`, `decision` (`giu`, `sua`, `bo`), `review_minutes` | Khi nhân viên lưu quyết định xem lại |
 | `staff_rework_completed` | Giao diện CSKH | `trace_id`, `request_id`, `event_at`, `reason`, `rework_minutes` | Khi nhân viên làm lại xong vì kết quả trợ lý sai |
+| `refund_ledger_write` | Dịch vụ sổ cái | `trace_id`, `request_id`, `event_at`, `refund_key`, `idempotency_key`, `ledger_entry_id`, `amount_vnd`, `status` | Khi có kết quả ghi sổ hoặc thử ghi lại |
+| `handoff_to_staff` | Hệ thống điều phối hoàn phí | `trace_id`, `request_id`, `event_at`, `reason`, `staff_id` | Khi chuyển yêu cầu sang luồng nhân viên |
 | `ticket_closed` | Hệ thống ticket | `trace_id`, `request_id`, `event_at` | Khi đóng yêu cầu |
 | `ticket_reopened` | Hệ thống ticket | `trace_id`, `request_id`, `event_at`, `reason` | Khi mở lại yêu cầu |
 | `audit_sample_checked` | Hệ thống kiểm toán | `trace_id`, `request_id`, `event_at`, `refund_paid_vnd`, `refund_due_vnd` | Khi hoàn tất đối chiếu số tiền theo chính sách |
@@ -34,13 +37,19 @@ Mỗi event có `trace_id`, `request_id` và thời điểm phát sinh `event_at
 - **Được hiện gợi ý.** Lọc nhóm can thiệp đủ điều kiện từ `refund_request_created`. Nối `agent_suggestion_shown` và đếm mỗi yêu cầu một lần trong tuần đo.
 - **Hoàn sai tiền.** Từ `audit_sample_checked`, đối chiếu `refund_paid_vnd` với `refund_due_vnd` trên mẫu đã kiểm xong trong tuần. Chọn mẫu theo cùng quy tắc giữa hai nhóm.
 
+**Đối chiếu chi phí và luật dừng pilot**
+
+- Tính chi phí token và tool theo từng `run_id` từ `agent_run_completed`, gồm cả lần lỗi và chạy lại. Ghép phút xem lại từ `staff_review_decision` và phút làm lại từ `staff_rework_completed`. Dùng `handoff_to_staff` để theo dõi phần việc trợ lý chuyển cho nhân viên.
+- Kiểm tra ca hoàn trùng bằng `refund_ledger_write`. Hai bút toán thành công có `ledger_entry_id` khác nhau cho cùng một khoản phải hoàn (`refund_key`) là tín hiệu cần đối soát. Giữ `refund_key` ổn định khi khách gửi lại yêu cầu và dùng `trace_id` để truy ngược từng lượt xử lý. Áp dụng luật dừng hoàn trùng trong [kế hoạch pilot](pilot_plan.yaml).
+
 ## E2 · Rủi ro kinh tế
 
-Hai dòng dưới khớp hai kịch bản B1 trong [bảng chi phí nhóm](bang_chi_phi.md) và đầu ra của `src/lab13.py` trên toàn bộ 1.200 yêu cầu.
+Hai kịch bản tăng gấp đôi dùng B1 trên toàn bộ 1.200 yêu cầu và khớp đầu ra của `src/lab13.py`. Kịch bản xem lại 100% dùng B4 trong phạm vi `noi_dia` và `hang_nang`. Nguồn số là [bảng chi phí nhóm](bang_chi_phi.md).
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
 | Khối lượng làm lại tăng gấp đôi | 4.472 → 6.787 đ/việc thành công, **+51,8%** (simulated) | Số yêu cầu có `staff_rework_completed` chia số yêu cầu được tiếp nhận, theo dõi theo tuần và theo loại | Tạm giữ phạm vi khi chi phí vượt ngưỡng đã duyệt. Xem lại trace của các ca làm lại để xác định loại cần thu hẹp | PM trợ lý hoàn phí |
 | Chi phí xem lại tăng gấp đôi | 4.472 → 6.292 đ/việc thành công, **+40,7%** (simulated) | Tỉ lệ có `staff_review_decision` trên số yêu cầu tiếp nhận, theo dõi hằng tuần. Dùng `review_minutes` để tách tần suất và thời lượng | Xác định loại yêu cầu tốn thời gian xem lại. Chỉ giảm bước xem lại theo luật an toàn trong pilot | Trưởng nhóm CSKH |
+| Duy trì xem lại 100% trong phạm vi pilot | **11.743 đ/việc thành công** nếu làm lại 9 phút/ca, hoặc **12.414 đ/việc thành công** nếu làm lại 15,3 phút/ca, tương ứng **0,98×** và **1,03×** mức nhân viên tự làm 12.000 đ (simulated, B4) | Theo tuần, đếm yêu cầu có `staff_review_decision` trên số yêu cầu đủ điều kiện xem lại trong nhánh trợ lý. Đo thêm `review_minutes` và `rework_minutes` | Dùng thời gian đo thực tế sau tuần đầu để tính lại chi phí. Chỉ giảm xem lại theo bậc khi tỉ lệ sửa hoặc bỏ dưới 15% và vẫn đạt ngưỡng an toàn của pilot | Trưởng nhóm CSKH |
 
 **Cách đối chiếu số.** Cộng token và tool của cả 1.624 lượt chạy theo [đơn giá đề bài](../../docs/du_lieu_va_cong_thuc.md) được 329.585,132 đ. Xem lại 890 phút × 2.000 đ = 1.780.000 đ (simulated). Làm lại 1.132 phút × 2.000 đ = 2.264.000 đ (simulated). Cộng ba khoản và chia 978 việc thành công được 4.471,97 đ (simulated). Mỗi kịch bản B1 nhân đôi đúng khoản tương ứng, giữ nguyên 978 việc thành công rồi tính lại mức thay đổi so với số gốc.

@@ -15,8 +15,8 @@
 ## 3. Đóng góp cụ thể
 
 - Nguyễn Thế Hoàng tự cung cấp bộ nhãn cho 20 ca. Bảng lưu đủ 20 nhãn gốc và chuẩn hóa cách viết tên loại.
-- Phần việc của vai Người 3 đã có bảng khắc phục 5 ca, đặc tả 5 chỉ số, 7 event có `trace_id` và 2 dòng rủi ro kinh tế. Codex hỗ trợ chuẩn bị các nội dung này.
-- Đối chiếu hai bộ nhãn độc lập của Hoàng và Vũ Đức Anh cho kết quả 17/20 (85%). Hai người thống nhất nhãn cho ca 3, 8 và 13. Bộ nhãn thống nhất khớp 20/20 nhãn tham khảo. Hai dòng rủi ro khớp cả đầu ra B1 của `src/lab13.py` và [bảng chi phí nhóm](bang_chi_phi.md). Đã đưa kết quả CP3 và CP5 vào mục 4, 5 và 7 của [hồ sơ launch](ho_so_launch_v0.md).
+- Phần việc của vai Người 3 đã có bảng khắc phục 5 ca, đặc tả 5 chỉ số, 10 event có `trace_id` và 3 dòng rủi ro kinh tế. Codex hỗ trợ chuẩn bị các nội dung này.
+- Đối chiếu hai bộ nhãn độc lập của Hoàng và Vũ Đức Anh cho kết quả 17/20 (85%). Hai người thống nhất nhãn cho ca 3, 8 và 13. Bộ nhãn thống nhất khớp 20/20 nhãn tham khảo. Hai dòng rủi ro độ nhạy khớp đầu ra B1 của `src/lab13.py`. Dòng xem lại 100% lấy số từ B4 trong [bảng chi phí nhóm](bang_chi_phi.md). Đã đưa kết quả CP3 và CP5 vào mục 4, 5 và 7 của [hồ sơ launch](ho_so_launch_v0.md).
 
 ## 4. Bằng chứng
 
