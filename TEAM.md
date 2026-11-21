@@ -13,7 +13,7 @@
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Do Nhat Anh | 2A202603701 | 26ai.anhdn6@vinuni.edu.vn | anhnhatdo175 | Người viết code |
 |   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
+|   3 | Nguyễn Thế Hoàng | 2A202603718 |       |        | Người gắn nhãn 1 và phụ trách chỉ số |
 |   4 |        |      |       |        |         |
 
 Bốn vai của lab:
@@ -24,6 +24,8 @@ Bốn vai của lab:
 - **Người gắn nhãn 2, kiêm giữ hồ sơ:** điền `report/team/ho_so_launch_v0.md` từ đầu buổi; gắn nhãn 20 ca độc lập ở CP3.
 
 Đổi người viết code sau giờ giải lao, để ít nhất hai người trong nhóm tự tay tính được chi phí.
+
+**Đóng góp Người 3:** Nguyễn Thế Hoàng cung cấp bộ nhãn gốc cho 20 ca CP3 và phụ trách phần chỉ số, event và rủi ro kinh tế của CP5.
 
 ## Cá nhân
 
