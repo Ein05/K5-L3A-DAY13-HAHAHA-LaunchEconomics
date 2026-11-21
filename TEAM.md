@@ -13,7 +13,7 @@
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Do Nhat Anh | 2A202603701 | 26ai.anhdn6@vinuni.edu.vn | anhnhatdo175 | Người viết code |
 |   2 |        |      |       |        |         |
-|   3 | Nguyễn Thế Hoàng | 2A202603718 |       |        | Người gắn nhãn 1 và phụ trách chỉ số |
+|   3 | Nguyễn Thế Hoàng | 2A202603718 | 26ai.hoangnt3@vinuni.edu.vn      | rollingthunder02       | Người gắn nhãn 1 và phụ trách chỉ số |
 |   4 |        |      |       |        |         |
 
 Bốn vai của lab:
