@@ -2,8 +2,8 @@
 
 Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo bằng chứng trong hồ sơ, không theo cách trình bày: một đề xuất No-go có lý do bằng số được điểm cao hơn một đề xuất Go bỏ qua con số bất lợi.
 
-- Nhóm chấm (hội đồng): HAHAHA
-- Nhóm được chấm: ... (điền tên nhóm bạn chấm lúc 17:00)
+- Nhóm chấm (hội đồng): MyBloodyValentine
+- Nhóm được chấm: HAHAHA 
 
 | Tiêu chí | 0 điểm | 5 điểm | 10 điểm | Điểm | Lý do (có số) |
 | --- | --- | --- | --- | ---: | --- |
