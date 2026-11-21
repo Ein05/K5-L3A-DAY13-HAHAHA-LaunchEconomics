@@ -14,7 +14,7 @@
 |   1 | Do Nhat Anh | 2A202603701 | 26ai.anhdn6@vinuni.edu.vn | anhnhatdo175 | Người viết code |
 |   2 | Vũ Đức Anh | 2A202603714 | 26ai.anhvd4@vinuni.edu.vn | Ein05 | Người gắn nhãn 2 và giữ hồ sơ |
 |   3 | Nguyễn Thế Hoàng | 2A202603718 | 26ai.hoangnt3@vinuni.edu.vn      | rollingthunder02       | Người gắn nhãn 1 và phụ trách chỉ số |
-|   4 | Lê Hải Bắc | 2A202603710 |  |        |         |
+|   4 | Lê Hải Bắc | 2A202603710 | 26ai.baclh@vinuni.edu.vn | https://github.com/Lehaibac05 | kiêm số và viết code |
 
 Bốn vai của lab:
 
